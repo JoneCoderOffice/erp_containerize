@@ -5,7 +5,7 @@ services:
             context: ../erp_back
             dockerfile: Dockerfile
         ports:
-            - "8001:80"
+            - "8002:80"
             - "8443:8443"
         depends_on:
             -   db
