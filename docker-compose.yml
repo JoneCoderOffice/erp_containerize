@@ -5,7 +5,7 @@ services:
             context: ../erp_back
             dockerfile: Dockerfile
         ports:
-            - "8000:80"
+            - "8001:80"
             - "8443:8443"
         depends_on:
             -   db
@@ -17,7 +17,7 @@ services:
             context: ../erp_web
             dockerfile: Dockerfile
         ports:
-            - "3000:80"
+            - "3001:80"
         depends_on:
             -   backend
         volumes:
@@ -27,7 +27,7 @@ services:
             context: ../erp_admin
             dockerfile: Dockerfile
         ports:
-            - "3001:3000"
+            - "3002:3000"
         depends_on:
             - backend
         volumes:
@@ -52,7 +52,7 @@ services:
         volumes:
             - redisdata:/data
         ports:
-            - "6379:6379"
+            - "6378:6379"
 
 volumes:
     dbdata:
