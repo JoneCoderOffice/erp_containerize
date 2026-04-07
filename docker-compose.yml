@@ -22,9 +22,19 @@ services:
             -   backend
         volumes:
             - ../erp_web:/app
+    admin:
+        build:
+            context: ../erp_admin
+            dockerfile: Dockerfile
+        ports:
+            - "3001:3000"
+        depends_on:
+            - backend
+        volumes:
+            - ../erp_admin:/app
 
     db:
-        image: postgres
+        image: postgres:17
         restart: always
         ports:
             - "5432:5432"
