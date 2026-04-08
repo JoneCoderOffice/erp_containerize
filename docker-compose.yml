@@ -27,7 +27,7 @@ services:
             context: ../erp_admin
             dockerfile: Dockerfile
         ports:
-            - "3002:3000"
+            - "3002:80"
         depends_on:
             - backend
         volumes:
