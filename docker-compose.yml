@@ -2,7 +2,7 @@ services:
 
     backend:
         build:
-            context: ../erp_back
+            context: ${BACKEND_PROJECT_DIR}
             dockerfile: Dockerfile
         ports:
             - "8002:80"
@@ -11,27 +11,27 @@ services:
             -   db
             - redis
         volumes:
-            - ../erp_back:/app
+            - ${BACKEND_PROJECT_DIR}:/app
     web:
         build:
-            context: ../erp_web
+            context: ${WEB_PROJECT_DIR}
             dockerfile: Dockerfile
         ports:
             - "3001:80"
         depends_on:
             -   backend
         volumes:
-            - ../erp_web:/app
+            - ${WEB_PROJECT_DIR}:/app
     admin:
         build:
-            context: ../erp_admin
+            context: ${ADMIN_PROJECT_DIR}
             dockerfile: Dockerfile
         ports:
             - "3002:80"
         depends_on:
             - backend
         volumes:
-            - ../erp_admin:/app
+            - ${ADMIN_PROJECT_DIR}:/app
 
     db:
         image: postgres:17
@@ -39,9 +39,9 @@ services:
         ports:
             - "5432:5432"
         environment:
-            POSTGRES_DB: erp
-            POSTGRES_USER: postgres
-            POSTGRES_PASSWORD: password
+            POSTGRES_DB: ${POSTGRES_DB}
+            POSTGRES_USER: ${POSTGRES_USER}
+            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
         volumes:
             - dbdata:/var/lib/postgresql/data
 
